@@ -1,0 +1,6 @@
+inherited App_Fillword: TApp_Fillword
+  OnCreate = FormCreate
+  inherited playmusic: Tplaysound
+    About.Title = 'About About About About About About About About About About About About About About About About About About PlaySound'
+  end
+end
