@@ -40,6 +40,8 @@ type
     hard_lvl_btn2_3: TBitBtn;
     hard_lvl_btn2_4: TBitBtn;
     btn_complete: TBitBtn;
+    text_music_off: TLabel;
+    text_music_on: TLabel;
     text_edit_fail: TLabel;
     text_edit_success: TLabel;
     lb_hard_lvl: TLabel;
@@ -112,11 +114,9 @@ type
     text_theme4_computer: TLabel;
     text_word: TLabel;
     text_Music: TLabel;
-    btn_mus_on: TRadioButton;
-    btn_mus_off: TRadioButton;
     playmusic: Tplaysound;
     text_rules: TLabel;
-    procedure BitBtn1Click(Sender: TObject);
+    slider_music: TTrackBar;
     procedure btn_completeClick(Sender: TObject);
     procedure btn_theme2_lvl2Click(Sender: TObject);
     procedure btn_theme2_lvl3Click(Sender: TObject);
@@ -125,11 +125,30 @@ type
     procedure btn_theme4_lvl2Click(Sender: TObject);
     procedure btn_theme4_lvl3Click(Sender: TObject);
     procedure hard_lvl_btn1_1Click(Sender: TObject);
-    procedure Rect_theme1ChangeBounds(Sender: TObject);
-    procedure Rect_theme2ChangeBounds(Sender: TObject);
-    procedure Rect_theme3ChangeBounds(Sender: TObject);
-    procedure text_edit_successClick(Sender: TObject);
-    procedure lb_hard_lvlClick(Sender: TObject);
+    procedure hard_lvl_btn1_2Click(Sender: TObject);
+    procedure hard_lvl_btn1_3Click(Sender: TObject);
+    procedure hard_lvl_btn1_4Click(Sender: TObject);
+    procedure hard_lvl_btn1_5Click(Sender: TObject);
+    procedure hard_lvl_btn2_1Click(Sender: TObject);
+    procedure hard_lvl_btn2_2Click(Sender: TObject);
+    procedure hard_lvl_btn2_3Click(Sender: TObject);
+    procedure hard_lvl_btn2_4Click(Sender: TObject);
+    procedure hard_lvl_btn2_5Click(Sender: TObject);
+    procedure hard_lvl_btn3_1Click(Sender: TObject);
+    procedure hard_lvl_btn3_2Click(Sender: TObject);
+    procedure hard_lvl_btn3_3Click(Sender: TObject);
+    procedure hard_lvl_btn3_4Click(Sender: TObject);
+    procedure hard_lvl_btn3_5Click(Sender: TObject);
+    procedure hard_lvl_btn4_1Click(Sender: TObject);
+    procedure hard_lvl_btn4_2Click(Sender: TObject);
+    procedure hard_lvl_btn4_3Click(Sender: TObject);
+    procedure hard_lvl_btn4_4Click(Sender: TObject);
+    procedure hard_lvl_btn4_5Click(Sender: TObject);
+    procedure hard_lvl_btn5_1Click(Sender: TObject);
+    procedure hard_lvl_btn5_2Click(Sender: TObject);
+    procedure hard_lvl_btn5_3Click(Sender: TObject);
+    procedure hard_lvl_btn5_4Click(Sender: TObject);
+    procedure hard_lvl_btn5_5Click(Sender: TObject);
     procedure middle_lvl_btn1_1Click(Sender: TObject);
     procedure middle_lvl_btn1_2Click(Sender: TObject);
     procedure middle_lvl_btn1_3Click(Sender: TObject);
@@ -147,7 +166,6 @@ type
     procedure btn_theme2_lvl4Click(Sender: TObject);
     procedure btn_theme3_lvl1Click(Sender: TObject);
     procedure btn_theme4_lvl1Click(Sender: TObject);
-    procedure country_lvl_1Click(Sender: TObject);
     procedure easy_lvl_btn1_2Click(Sender: TObject);
     procedure easy_lvl_btn1_3Click(Sender: TObject);
     procedure easy_lvl_btn2_1Click(Sender: TObject);
@@ -157,11 +175,6 @@ type
     procedure easy_lvl_btn3_2Click(Sender: TObject);
     procedure easy_lvl_btn3_3Click(Sender: TObject);
     procedure easy_lvl_btn1_1Click(Sender: TObject);
-    procedure edit_input_wordChange(Sender: TObject);
-
-    procedure btn_mus_onChange(Sender: TObject);
-    procedure btn_mus_offChange(Sender: TObject);
-    procedure hidden_wordsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure middle_lvl_btn1_4Click(Sender: TObject);
     procedure middle_lvl_btn2_1Click(Sender: TObject);
@@ -176,7 +189,8 @@ type
     procedure middle_lvl_btn4_2Click(Sender: TObject);
     procedure middle_lvl_btn4_3Click(Sender: TObject);
     procedure middle_lvl_btn4_4Click(Sender: TObject);
-    procedure text_theme1_foodClick(Sender: TObject);
+    procedure slider_musicChange(Sender: TObject);
+
   private
 
   public
@@ -207,7 +221,7 @@ implementation
 
 procedure TApp_Fillword.FormCreate(Sender: TObject);
 begin
-     PlaySound('C:\Users\user\Desktop\fillwords\music.wav',0,SND_FILENAME or SND_ASYNC);
+     PlaySound('music.wav',0,SND_FILENAME or SND_ASYNC);
      Left := (Screen.Width - Width) div 2;
      Top := (Screen.Height - Height) div 2;
 end;
@@ -354,6 +368,35 @@ begin
      if e[14]=false then App_Fillword.middle_lvl_btn4_2.enabled:=true;
      if e[15]=false then App_Fillword.middle_lvl_btn4_3.enabled:=true;
      if e[16]=false then App_Fillword.middle_lvl_btn4_4.enabled:=true;
+end;
+
+procedure hard_word_false (); //слово=0, разблокировка сложный
+begin
+     if e[1]=false then App_Fillword.hard_lvl_btn1_1.enabled:=true;
+     if e[2]=false then App_Fillword.hard_lvl_btn1_2.enabled:=true;
+     if e[3]=false then App_Fillword.hard_lvl_btn1_3.enabled:=true;
+     if e[4]=false then App_Fillword.hard_lvl_btn1_4.enabled:=true;
+     if e[5]=false then App_Fillword.hard_lvl_btn1_5.enabled:=true;
+     if e[6]=false then App_Fillword.hard_lvl_btn2_1.enabled:=true;
+     if e[7]=false then App_Fillword.hard_lvl_btn2_2.enabled:=true;
+     if e[8]=false then App_Fillword.hard_lvl_btn2_3.enabled:=true;
+     if e[9]=false then App_Fillword.hard_lvl_btn2_4.enabled:=true;
+     if e[10]=false then App_Fillword.hard_lvl_btn2_5.enabled:=true;
+     if e[11]=false then App_Fillword.hard_lvl_btn3_1.enabled:=true;
+     if e[12]=false then App_Fillword.hard_lvl_btn3_2.enabled:=true;
+     if e[13]=false then App_Fillword.hard_lvl_btn3_3.enabled:=true;
+     if e[14]=false then App_Fillword.hard_lvl_btn3_4.enabled:=true;
+     if e[15]=false then App_Fillword.hard_lvl_btn3_5.enabled:=true;
+     if e[16]=false then App_Fillword.hard_lvl_btn4_1.enabled:=true;
+     if e[17]=false then App_Fillword.hard_lvl_btn4_2.enabled:=true;
+     if e[18]=false then App_Fillword.hard_lvl_btn4_3.enabled:=true;
+     if e[19]=false then App_Fillword.hard_lvl_btn4_4.enabled:=true;
+     if e[20]=false then App_Fillword.hard_lvl_btn4_5.enabled:=true;
+     if e[21]=false then App_Fillword.hard_lvl_btn5_1.enabled:=true;
+     if e[22]=false then App_Fillword.hard_lvl_btn5_2.enabled:=true;
+     if e[23]=false then App_Fillword.hard_lvl_btn5_3.enabled:=true;
+     if e[24]=false then App_Fillword.hard_lvl_btn5_4.enabled:=true;
+     if e[25]=false then App_Fillword.hard_lvl_btn5_5.enabled:=true;
 end;
 
 procedure enabled_all();  //разблокировка всех кнопок
@@ -725,32 +768,21 @@ begin
      end;
 end;
 
-procedure TApp_Fillword.text_theme1_foodClick(Sender: TObject);
+procedure TApp_Fillword.slider_musicChange(Sender: TObject);
 begin
-
+  case slider_music.Position of
+    0:
+      PlaySound('music.wav', 0, SND_FILENAME or SND_ASYNC);
+    1:
+      PlaySound(nil, 0, 0);
+  end;
 end;
 
-procedure TApp_Fillword.btn_mus_onChange(Sender: TObject);
-begin
-  PlaySound('music.wav',0,SND_FILENAME or SND_ASYNC);
-
-end;
-
-procedure TApp_Fillword.btn_mus_offChange(Sender: TObject);
-begin
-  PlaySound(nil,0,0);
-end;
-
-procedure TApp_Fillword.hidden_wordsClick(Sender: TObject);
-begin
-
-end;
-
-procedure TApp_Fillword.btn_theme1_lvl1Click(Sender: TObject);  //еда легкий
+procedure TApp_Fillword.btn_theme1_lvl1Click(Sender: TObject);
 begin
   // запись множетсва
   hidden_words:=TStringList.Create;
-  AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\еда\1_lvl_words.txt');
+  AssignFile(file_handle, 'lvl\еда\1_lvl_words.txt');
   Reset(file_handle);
   while not Eof(file_handle) do
   begin
@@ -759,7 +791,7 @@ begin
   end;
   CloseFile(file_handle);
   // запись массива 3*3
-  AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\еда\1_lvl_array.txt');  //////
+  AssignFile(input_array, 'lvl\еда\1_lvl_array.txt');  //////
   Reset(input_array);
   for i := 1 to 25 do
   begin
@@ -772,15 +804,17 @@ begin
   e_array_true ();          //массив е равен true
   enabled_all();            //все кнопки разблокированы
   easy_caption_btn ();      //надписи на кнопках
+  input_word:='';
+  edit_input_word.text:= input_word;
   x1:=0;
   y1:=0;
 end;
 
-procedure TApp_Fillword.btn_theme1_lvl2Click(Sender: TObject);  //еда средний
+procedure TApp_Fillword.btn_theme1_lvl2Click(Sender: TObject);
 begin
   // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\еда\2_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\еда\2_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -789,7 +823,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 4*4
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\еда\2_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\еда\2_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -802,6 +836,8 @@ begin
     e_array_true ();
     enabled_all();
     middle_caption_btn ();
+    input_word:='';
+    edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
 end;
@@ -810,17 +846,16 @@ procedure TApp_Fillword.btn_theme1_lvl3Click(Sender: TObject);
 begin
     // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\еда\3_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\еда\3_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
       ReadLn(file_handle, word);
       hidden_words.Add(word);
-     // hidden_words := hidden_words + [word];
     end;
     CloseFile(file_handle);
     // запись массива 5*5
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\еда\3_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\еда\3_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -828,9 +863,15 @@ begin
         lvl_array[i] := value;
     end;
     CloseFile(input_array);
+    hard_elements_visible ();
     hard_caption_btn ();
     text_invisible ();
-    hard_elements_visible ();
+    enabled_all();
+    e_array_true ();
+    input_word:='';
+    edit_input_word.text:= input_word;
+    x1:=0;
+    y1:=0;
 end;
 
 procedure TApp_Fillword.btn_theme1_lvl4Click(Sender: TObject);
@@ -842,7 +883,7 @@ procedure TApp_Fillword.btn_theme2_lvl1Click(Sender: TObject);
 begin
     // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\страны\1_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\страны\1_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -851,7 +892,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 3*3
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\страны\1_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\страны\1_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -864,6 +905,8 @@ begin
     e_array_true ();
     enabled_all();
     easy_caption_btn ();
+    input_word:='';
+    edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
 end;
@@ -877,7 +920,7 @@ procedure TApp_Fillword.btn_theme3_lvl1Click(Sender: TObject);
 begin
     // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\профессии\1_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\профессии\1_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -886,7 +929,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 3*3
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\профессии\1_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\профессии\1_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -899,6 +942,8 @@ begin
     e_array_true ();
     enabled_all();
     easy_caption_btn ();
+    input_word:='';
+    edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
 end;
@@ -907,7 +952,7 @@ procedure TApp_Fillword.btn_theme4_lvl1Click(Sender: TObject);
 begin
     // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\компьютер\1_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\компьютер\1_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -916,7 +961,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 3*3
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\компьютер\1_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\компьютер\1_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -929,13 +974,10 @@ begin
     e_array_true ();
     enabled_all();
     easy_caption_btn ();
+    input_word:='';
+    edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
-end;
-
-procedure TApp_Fillword.country_lvl_1Click(Sender: TObject);
-begin
-
 end;
 
 procedure TApp_Fillword.easy_lvl_btn1_2Click(Sender: TObject);
@@ -1170,11 +1212,6 @@ begin
   end;
 end;
 
-procedure TApp_Fillword.edit_input_wordChange(Sender: TObject);
-begin
-
-end;
-
 procedure TApp_Fillword.btn_settingsClick(Sender: TObject);
 begin
   hello_words.Visible:=false;
@@ -1249,8 +1286,9 @@ begin
       text_edit_success.Visible:=false;
       text_edit_right.Visible:=false;
       text_edit_wrong.Visible:=true;
-      if box_easy_lvl.Visible=true then easy_word_false (); //добавить ср и сл
+      if box_easy_lvl.Visible=true then easy_word_false ();
       if box_middle_lvl.visible=true then middle_word_false ();
+      if box_hard_lvl.visible=true then hard_word_false ();
       e_array_true ();
       end;
   input_word:='';
@@ -1285,16 +1323,11 @@ begin
      edit_input_word.text:= input_word;
 end;
 
-procedure TApp_Fillword.BitBtn1Click(Sender: TObject);
-begin
-
-end;
-
 procedure TApp_Fillword.btn_theme2_lvl2Click(Sender: TObject);
 begin
     // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\страны\2_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\страны\2_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -1303,7 +1336,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 4*4
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\страны\2_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\страны\2_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -1316,21 +1349,49 @@ begin
     e_array_true ();
     enabled_all();
     middle_caption_btn ();
+    input_word:='';
+    edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
 end;
 
 procedure TApp_Fillword.btn_theme2_lvl3Click(Sender: TObject);
 begin
-  text_invisible ();
-  text_choose_lvl.Visible:=false;
+    // запись множетсва
+    hidden_words:=TStringList.Create;
+    AssignFile(file_handle, 'lvl\страны\3_lvl_words.txt');
+    Reset(file_handle);
+    while not Eof(file_handle) do
+    begin
+      ReadLn(file_handle, word);
+      hidden_words.Add(word);
+    end;
+    CloseFile(file_handle);
+    // запись массива 5*5
+    AssignFile(input_array, 'lvl\страны\3_lvl_array.txt');  //////
+    Reset(input_array);
+    for i := 1 to 25 do
+    begin
+        Readln(input_array, value); ////
+        lvl_array[i] := value;
+    end;
+    CloseFile(input_array);
+    hard_elements_visible ();
+    hard_caption_btn ();
+    text_invisible ();
+    enabled_all();
+    e_array_true ();
+    input_word:='';
+    edit_input_word.text:= input_word;
+    x1:=0;
+    y1:=0;
 end;
 
 procedure TApp_Fillword.btn_theme3_lvl2Click(Sender: TObject);
 begin
   // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\профессии\2_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\профессии\2_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -1339,7 +1400,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 4*4
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\профессии\2_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\профессии\2_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -1352,17 +1413,17 @@ begin
     e_array_true ();
     enabled_all();
     middle_caption_btn ();
+    input_word:='';
+  edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
 end;
 
 procedure TApp_Fillword.btn_theme3_lvl3Click(Sender: TObject);
 begin
-     text_invisible ();
-     text_choose_lvl.Visible:=false;
      // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\профессии\3_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\профессии\3_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -1370,8 +1431,8 @@ begin
       hidden_words.Add(word);
     end;
     CloseFile(file_handle);
-    // запись массива 3*3
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\профессии\3_lvl_array.txt');  //////
+    // запись массива 5*5
+    AssignFile(input_array, 'lvl\профессии\3_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -1379,16 +1440,22 @@ begin
         lvl_array[i] := value;
     end;
     CloseFile(input_array);
-    box_easy_lvl.visible:=false;
-    box_middle_lvl.visible:=false;
-    box_hard_lvl.Visible:=true;
+    hard_elements_visible ();
+    hard_caption_btn ();
+    text_invisible ();
+    enabled_all();
+    e_array_true ();
+    input_word:='';
+    edit_input_word.text:= input_word;
+    x1:=0;
+    y1:=0;
 end;
 
 procedure TApp_Fillword.btn_theme4_lvl2Click(Sender: TObject);
 begin
     // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\компьютер\2_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\компьютер\2_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -1397,7 +1464,7 @@ begin
     end;
     CloseFile(file_handle);
     // запись массива 4*4
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\компьютер\2_lvl_array.txt');  //////
+    AssignFile(input_array, 'lvl\компьютер\2_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -1410,17 +1477,17 @@ begin
     e_array_true ();
     enabled_all();
     middle_caption_btn ();
+    input_word:='';
+    edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
 end;
 
 procedure TApp_Fillword.btn_theme4_lvl3Click(Sender: TObject);
 begin
-  text_invisible ();
-    text_choose_lvl.Visible:=false;
-  // запись множетсва
+    // запись множетсва
     hidden_words:=TStringList.Create;
-    AssignFile(file_handle, 'C:\Users\user\Desktop\fillwords\lvl\компьютер\3_lvl_words.txt');
+    AssignFile(file_handle, 'lvl\компьютер\3_lvl_words.txt');
     Reset(file_handle);
     while not Eof(file_handle) do
     begin
@@ -1429,8 +1496,8 @@ begin
      // hidden_words := hidden_words + [word];
     end;
     CloseFile(file_handle);
-    // запись массива 3*3
-    AssignFile(input_array, 'C:\Users\user\Desktop\fillwords\lvl\компьютер\3_lvl_array.txt');  //////
+    // запись массива 5*5
+    AssignFile(input_array, 'lvl\компьютер\3_lvl_array.txt');  //////
     Reset(input_array);
     for i := 1 to 25 do
     begin
@@ -1438,39 +1505,613 @@ begin
         lvl_array[i] := value;
     end;
     CloseFile(input_array);
-    box_easy_lvl.visible:=false;
-    box_middle_lvl.visible:=false;
-    box_hard_lvl.Visible:=true;
+    hard_caption_btn ();
+    text_invisible ();
+    hard_elements_visible ();
+    input_word:='';
+    edit_input_word.text:= input_word;
+    x1:=0;
+    y1:=0;
 end;
 
 procedure TApp_Fillword.hard_lvl_btn1_1Click(Sender: TObject);
 begin
-
+     e[1]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=1;
+          y1:=1;
+          input_word:=input_word+lvl_array[1];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_1.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-1)=1) and (abs(y1-1)=0)or (abs(x1-1)=0) and (abs(y1-1)=1)
+          then begin
+          input_word:=input_word+lvl_array[1];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_1.Enabled:=false;
+          x1:=1;
+          y1:=1;
+          end;
+     end;
 end;
 
-procedure TApp_Fillword.Rect_theme1ChangeBounds(Sender: TObject);
+procedure TApp_Fillword.hard_lvl_btn1_2Click(Sender: TObject);
 begin
-
+     e[2]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=1;
+          y1:=2;
+          input_word:=input_word+lvl_array[2];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_2.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-1)=1) and (abs(y1-2)=0)or (abs(x1-1)=0) and (abs(y1-2)=1)
+          then begin
+          input_word:=input_word+lvl_array[2];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_2.Enabled:=false;
+          x1:=1;
+          y1:=2;
+          end;
+     end;
 end;
 
-procedure TApp_Fillword.Rect_theme2ChangeBounds(Sender: TObject);
+procedure TApp_Fillword.hard_lvl_btn1_3Click(Sender: TObject);
 begin
-
+     e[3]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=1;
+          y1:=3;
+          input_word:=input_word+lvl_array[3];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_3.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-1)=1) and (abs(y1-3)=0)or (abs(x1-1)=0) and (abs(y1-3)=1)
+          then begin
+          input_word:=input_word+lvl_array[3];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_3.Enabled:=false;
+          x1:=1;
+          y1:=3;
+          end;
+     end;
 end;
 
-procedure TApp_Fillword.Rect_theme3ChangeBounds(Sender: TObject);
+procedure TApp_Fillword.hard_lvl_btn1_4Click(Sender: TObject);
 begin
-
+     e[4]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=1;
+          y1:=4;
+          input_word:=input_word+lvl_array[4];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_4.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-1)=1) and (abs(y1-4)=0)or (abs(x1-1)=0) and (abs(y1-4)=1)
+          then begin
+          input_word:=input_word+lvl_array[4];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_4.Enabled:=false;
+          x1:=1;
+          y1:=4;
+          end;
+     end;
 end;
 
-procedure TApp_Fillword.text_edit_successClick(Sender: TObject);
+procedure TApp_Fillword.hard_lvl_btn1_5Click(Sender: TObject);
 begin
-
+     e[5]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=1;
+          y1:=5;
+          input_word:=input_word+lvl_array[5];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_5.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-1)=1) and (abs(y1-5)=0)or (abs(x1-1)=0) and (abs(y1-5)=1)
+          then begin
+          input_word:=input_word+lvl_array[5];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn1_5.Enabled:=false;
+          x1:=1;
+          y1:=5;
+          end;
+     end;
 end;
 
-procedure TApp_Fillword.lb_hard_lvlClick(Sender: TObject);
+procedure TApp_Fillword.hard_lvl_btn2_1Click(Sender: TObject);
 begin
+     e[6]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=2;
+          y1:=1;
+          input_word:=input_word+lvl_array[6];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_1.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-2)=1) and (abs(y1-1)=0)or (abs(x1-2)=0) and (abs(y1-1)=1)
+          then begin
+          input_word:=input_word+lvl_array[6];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_1.Enabled:=false;
+          x1:=2;
+          y1:=1;
+          end;
+     end;
+end;
 
+procedure TApp_Fillword.hard_lvl_btn2_2Click(Sender: TObject);
+begin
+     e[7]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=2;
+          y1:=2;
+          input_word:=input_word+lvl_array[7];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_2.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-2)=1) and (abs(y1-2)=0)or (abs(x1-2)=0) and (abs(y1-2)=1)
+          then begin
+          input_word:=input_word+lvl_array[7];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_2.Enabled:=false;
+          x1:=2;
+          y1:=2;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn2_3Click(Sender: TObject);
+begin
+     e[8]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=2;
+          y1:=3;
+          input_word:=input_word+lvl_array[8];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_3.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-2)=1) and (abs(y1-3)=0)or (abs(x1-2)=0) and (abs(y1-3)=1)
+          then begin
+          input_word:=input_word+lvl_array[8];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_3.Enabled:=false;
+          x1:=2;
+          y1:=3;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn2_4Click(Sender: TObject);
+begin
+     e[9]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=2;
+          y1:=4;
+          input_word:=input_word+lvl_array[9];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_4.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-2)=1) and (abs(y1-4)=0)or (abs(x1-2)=0) and (abs(y1-4)=1)
+          then begin
+          input_word:=input_word+lvl_array[9];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_4.Enabled:=false;
+          x1:=2;
+          y1:=4;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn2_5Click(Sender: TObject);
+begin
+     e[10]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=2;
+          y1:=5;
+          input_word:=input_word+lvl_array[10];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_5.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-2)=1) and (abs(y1-5)=0)or (abs(x1-2)=0) and (abs(y1-5)=1)
+          then begin
+          input_word:=input_word+lvl_array[10];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn2_5.Enabled:=false;
+          x1:=2;
+          y1:=5;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn3_1Click(Sender: TObject);
+begin
+     e[11]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=3;
+          y1:=1;
+          input_word:=input_word+lvl_array[11];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_1.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-3)=1) and (abs(y1-1)=0)or (abs(x1-3)=0) and (abs(y1-1)=1)
+          then begin
+          input_word:=input_word+lvl_array[11];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_1.Enabled:=false;
+          x1:=3;
+          y1:=1;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn3_2Click(Sender: TObject);
+begin
+     e[12]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=3;
+          y1:=2;
+          input_word:=input_word+lvl_array[12];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_2.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-3)=1) and (abs(y1-2)=0)or (abs(x1-3)=0) and (abs(y1-2)=1)
+          then begin
+          input_word:=input_word+lvl_array[12];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_2.Enabled:=false;
+          x1:=3;
+          y1:=2;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn3_3Click(Sender: TObject);
+begin
+     e[13]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=3;
+          y1:=3;
+          input_word:=input_word+lvl_array[13];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_3.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-3)=1) and (abs(y1-3)=0)or (abs(x1-3)=0) and (abs(y1-3)=1)
+          then begin
+          input_word:=input_word+lvl_array[13];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_3.Enabled:=false;
+          x1:=3;
+          y1:=3;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn3_4Click(Sender: TObject);
+begin
+     e[14]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=3;
+          y1:=4;
+          input_word:=input_word+lvl_array[14];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_4.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-3)=1) and (abs(y1-4)=0)or (abs(x1-3)=0) and (abs(y1-4)=1)
+          then begin
+          input_word:=input_word+lvl_array[14];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_4.Enabled:=false;
+          x1:=3;
+          y1:=4;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn3_5Click(Sender: TObject);
+begin
+     e[15]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=3;
+          y1:=5;
+          input_word:=input_word+lvl_array[15];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_5.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-3)=1) and (abs(y1-5)=0)or (abs(x1-3)=0) and (abs(y1-5)=1)
+          then begin
+          input_word:=input_word+lvl_array[15];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn3_5.Enabled:=false;
+          x1:=3;
+          y1:=5;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn4_1Click(Sender: TObject);
+begin
+     e[16]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=4;
+          y1:=1;
+          input_word:=input_word+lvl_array[16];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_1.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-4)=1) and (abs(y1-1)=0)or (abs(x1-4)=0) and (abs(y1-1)=1)
+          then begin
+          input_word:=input_word+lvl_array[16];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_1.Enabled:=false;
+          x1:=4;
+          y1:=1;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn4_2Click(Sender: TObject);
+begin
+     e[17]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=4;
+          y1:=2;
+          input_word:=input_word+lvl_array[17];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_2.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-4)=1) and (abs(y1-2)=0)or (abs(x1-4)=0) and (abs(y1-2)=1)
+          then begin
+          input_word:=input_word+lvl_array[17];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_2.Enabled:=false;
+          x1:=4;
+          y1:=2;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn4_3Click(Sender: TObject);
+begin
+     e[18]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=4;
+          y1:=3;
+          input_word:=input_word+lvl_array[18];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_3.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-4)=1) and (abs(y1-3)=0)or (abs(x1-4)=0) and (abs(y1-3)=1)
+          then begin
+          input_word:=input_word+lvl_array[18];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_3.Enabled:=false;
+          x1:=4;
+          y1:=3;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn4_4Click(Sender: TObject);
+begin
+  e[19]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=4;
+          y1:=4;
+          input_word:=input_word+lvl_array[19];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_4.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-4)=1) and (abs(y1-4)=0)or (abs(x1-4)=0) and (abs(y1-4)=1)
+          then begin
+          input_word:=input_word+lvl_array[19];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_4.Enabled:=false;
+          x1:=4;
+          y1:=4;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn4_5Click(Sender: TObject);
+begin
+     e[20]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=4;
+          y1:=5;
+          input_word:=input_word+lvl_array[20];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_5.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-4)=1) and (abs(y1-5)=0)or (abs(x1-4)=0) and (abs(y1-5)=1)
+          then begin
+          input_word:=input_word+lvl_array[20];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn4_5.Enabled:=false;
+          x1:=4;
+          y1:=5;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn5_1Click(Sender: TObject);
+begin
+     e[21]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=5;
+          y1:=1;
+          input_word:=input_word+lvl_array[21];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_1.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-5)=1) and (abs(y1-1)=0)or (abs(x1-5)=0) and (abs(y1-1)=1)
+          then begin
+          input_word:=input_word+lvl_array[21];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_1.Enabled:=false;
+          x1:=5;
+          y1:=1;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn5_2Click(Sender: TObject);
+begin
+     e[22]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=5;
+          y1:=2;
+          input_word:=input_word+lvl_array[22];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_2.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-5)=1) and (abs(y1-2)=0)or (abs(x1-5)=0) and (abs(y1-2)=1)
+          then begin
+          input_word:=input_word+lvl_array[22];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_2.Enabled:=false;
+          x1:=5;
+          y1:=2;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn5_3Click(Sender: TObject);
+begin
+     e[23]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=5;
+          y1:=3;
+          input_word:=input_word+lvl_array[23];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_3.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-5)=1) and (abs(y1-3)=0)or (abs(x1-5)=0) and (abs(y1-3)=1)
+          then begin
+          input_word:=input_word+lvl_array[23];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_3.Enabled:=false;
+          x1:=5;
+          y1:=3;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn5_4Click(Sender: TObject);
+begin
+     e[24]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=5;
+          y1:=4;
+          input_word:=input_word+lvl_array[24];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_4.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-5)=1) and (abs(y1-4)=0)or (abs(x1-5)=0) and (abs(y1-4)=1)
+          then begin
+          input_word:=input_word+lvl_array[24];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_4.Enabled:=false;
+          x1:=5;
+          y1:=4;
+          end;
+     end;
+end;
+
+procedure TApp_Fillword.hard_lvl_btn5_5Click(Sender: TObject);
+begin
+     e[25]:=false;
+     text_invisible ();
+     if (x1=0) and (y1=0)then
+          begin
+          x1:=5;
+          y1:=5;
+          input_word:=input_word+lvl_array[25];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_5.Enabled:=false;
+          end
+     else begin
+          if (abs(x1-5)=1) and (abs(y1-5)=0)or (abs(x1-5)=0) and (abs(y1-5)=1)
+          then begin
+          input_word:=input_word+lvl_array[25];
+          edit_input_word.text:=input_word;
+          hard_lvl_btn5_5.Enabled:=false;
+          x1:=5;
+          y1:=5;
+          end;
+     end;
 end;
 
 procedure TApp_Fillword.middle_lvl_btn1_1Click(Sender: TObject);
