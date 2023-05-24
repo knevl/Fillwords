@@ -14,6 +14,7 @@ type
   { TApp_Fillword }
 
   TApp_Fillword = class(TForm)
+    btn_help: TBitBtn;
     hard_lvl_btn1_1: TBitBtn;
     hard_lvl_btn2_5: TBitBtn;
     hard_lvl_btn3_1: TBitBtn;
@@ -40,6 +41,7 @@ type
     hard_lvl_btn2_3: TBitBtn;
     hard_lvl_btn2_4: TBitBtn;
     btn_complete: TBitBtn;
+    memo_helpword: TMemo;
     text_music_off: TLabel;
     text_music_on: TLabel;
     text_edit_fail: TLabel;
@@ -117,6 +119,7 @@ type
     playmusic: Tplaysound;
     text_rules: TLabel;
     slider_music: TTrackBar;
+    procedure btn_helpClick(Sender: TObject);
     procedure btn_completeClick(Sender: TObject);
     procedure btn_theme2_lvl2Click(Sender: TObject);
     procedure btn_theme2_lvl3Click(Sender: TObject);
@@ -163,7 +166,6 @@ type
     procedure btn_theme1_lvl3Click(Sender: TObject);
     procedure btn_theme1_lvl4Click(Sender: TObject);
     procedure btn_theme2_lvl1Click(Sender: TObject);
-    procedure btn_theme2_lvl4Click(Sender: TObject);
     procedure btn_theme3_lvl1Click(Sender: TObject);
     procedure btn_theme4_lvl1Click(Sender: TObject);
     procedure easy_lvl_btn1_2Click(Sender: TObject);
@@ -221,9 +223,7 @@ implementation
 
 procedure TApp_Fillword.FormCreate(Sender: TObject);
 begin
-     PlaySound('music.wav',0,SND_FILENAME or SND_ASYNC);
-     Left := (Screen.Width - Width) div 2;
-     Top := (Screen.Height - Height) div 2;
+     PlaySound('music.wav',0,SND_FILENAME or SND_ASYNC or SND_LOOP);
 end;
 
 procedure text_invisible ();   //убрать все текстовые сообщения
@@ -244,6 +244,9 @@ begin
      App_Fillword.edit_input_word.Visible:=true;
      App_Fillword.btn_check.Visible:=true;
      App_Fillword.btn_complete.Visible:=true;
+     App_Fillword.btn_help.Visible:=true;
+     App_Fillword.memo_helpword.visible:=false;
+     App_Fillword.memo_helpword.Lines.Clear;
 end;
 
 procedure easy_caption_btn ();    //заголовки внопок для легкого
@@ -268,6 +271,9 @@ begin
      App_Fillword.edit_input_word.Visible:=true;
      App_Fillword.btn_check.Visible:=true;
      App_Fillword.btn_complete.Visible:=true;
+     App_Fillword.btn_help.Visible:=true;
+     App_Fillword.memo_helpword.visible:=false;
+     App_Fillword.memo_helpword.Lines.Clear;
 end;
 
 procedure middle_caption_btn ();      //заголовки кнопок для среднего
@@ -299,6 +305,9 @@ begin
      App_Fillword.edit_input_word.Visible:=true;
      App_Fillword.btn_check.Visible:=true;
      App_Fillword.btn_complete.Visible:=true;
+     App_Fillword.btn_help.Visible:=false;
+     App_Fillword.memo_helpword.visible:=false;
+     App_Fillword.memo_helpword.Lines.Clear;
 end;
 
 procedure hard_caption_btn ();        //заголовки кнопок для сложного
@@ -347,7 +356,6 @@ begin
      if e[7]=false then App_Fillword.easy_lvl_btn3_1.enabled:=true;
      if e[8]=false then App_Fillword.easy_lvl_btn3_2.enabled:=true;
      if e[9]=false then App_Fillword.easy_lvl_btn3_3.enabled:=true;
-     //e_array_true ();
 end;
 
 procedure middle_word_false (); //слово=0, разблокировка средний
@@ -771,10 +779,8 @@ end;
 procedure TApp_Fillword.slider_musicChange(Sender: TObject);
 begin
   case slider_music.Position of
-    0:
-      PlaySound('music.wav', 0, SND_FILENAME or SND_ASYNC);
-    1:
-      PlaySound(nil, 0, 0);
+    0: PlaySound(nil, 0, 0);
+    1: PlaySound('music.wav', 0,SND_FILENAME or SND_ASYNC or SND_LOOP);
   end;
 end;
 
@@ -791,11 +797,11 @@ begin
   end;
   CloseFile(file_handle);
   // запись массива 3*3
-  AssignFile(input_array, 'lvl\еда\1_lvl_array.txt');  //////
+  AssignFile(input_array, 'lvl\еда\1_lvl_array.txt');
   Reset(input_array);
   for i := 1 to 25 do
   begin
-      Readln(input_array, value); ////
+      Readln(input_array, value);
       lvl_array[i] := value;
   end;
   CloseFile(input_array);
@@ -909,11 +915,6 @@ begin
     edit_input_word.text:= input_word;
     x1:=0;
     y1:=0;
-end;
-
-procedure TApp_Fillword.btn_theme2_lvl4Click(Sender: TObject);
-begin
-
 end;
 
 procedure TApp_Fillword.btn_theme3_lvl1Click(Sender: TObject);
@@ -1274,7 +1275,6 @@ begin
       end ;
   if b=true then begin
     hidden_words.Delete(hidden_words.IndexOf(a));
-     //break;
      text_edit_success.Visible:=false;
      text_edit_fail.Visible:=false;
      text_edit_wrong.Visible:=false;
@@ -1307,6 +1307,8 @@ begin
      edit_input_word.Visible:=false;
      btn_check.Visible:=false;
      btn_complete.Visible:=false;
+     btn_help.Visible:=false;
+     memo_helpword.visible:=false;
      if hidden_words.Count=0 then begin
         text_edit_success.Visible:=true;
         text_edit_fail.Visible:=false;
@@ -1321,6 +1323,25 @@ begin
      end;
      input_word:='';
      edit_input_word.text:= input_word;
+end;
+
+procedure TApp_Fillword.btn_helpClick(Sender: TObject);
+var
+  t: byte;
+begin
+  if hidden_words.Count>0 then
+begin
+  memo_helpword.Lines.Clear;
+  if memo_helpword.visible=false then begin
+  memo_helpword.visible:=true;
+  for t:=0 to hidden_words.Count-1 do
+  begin
+    memo_helpword.Lines.Add(hidden_words[t]);
+  end;
+  end
+  else memo_helpword.visible:=false;
+end
+  else if memo_helpword.visible=true then memo_helpword.visible:=false;
 end;
 
 procedure TApp_Fillword.btn_theme2_lvl2Click(Sender: TObject);
